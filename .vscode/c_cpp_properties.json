@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/libsponge/tcp_helpers"
             ],
             "configurationProvider": "ms-vscode.cmake-tools"
         }
