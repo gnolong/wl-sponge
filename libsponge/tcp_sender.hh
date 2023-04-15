@@ -37,16 +37,19 @@ class TCPSender {
     ByteStream _stream;
 
     //! the (absolute) sequence number for the next byte to be sent
-    uint64_t _next_seqno{0};//包含_segments_out队列的数据
+    uint64_t _next_seqno{0};//包含_segments_out队列的数据！！！！
     uint64_t _checkpoint{0};
-    uint64_t _ackno{0}; //已经确认的ackno
-    uint64_t _rwnd{0};//可发送的窗口大小
 
-    bool _fin_send{0};
+   
+
+    
 
 
 
   public:
+    bool _fin_send{0};
+    uint64_t _rwnd{0};//可发送的窗口大小
+    uint64_t _ackno{0}; //已经确认的ackno
     //! Initialize a TCPSender
     TCPSender(const size_t capacity = TCPConfig::DEFAULT_CAPACITY,
               const uint16_t retx_timeout = TCPConfig::TIMEOUT_DFLT,

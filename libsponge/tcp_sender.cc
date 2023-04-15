@@ -34,6 +34,7 @@ void TCPSender::fill_window() {
     if (_rwnd == 0 && _track.size() != 0) {
         return;
     }
+    // payload_size = _rwnd;
     payload_size = _rwnd == 0 ? 1 : payload_size;//当接收方给我们的窗口大小为0时，且我们发送的数据全被确认，我们不能再接受到窗口和ackno信息，
     //此时为一个ack有效的回复报文，窗口大小默认构造时为0，就需要把窗口当作1继续发送，不然tcp就不能继续进行
     for (;;) {
@@ -133,5 +134,6 @@ void TCPSender::send_empty_segment() {
     TCPHeader &header = segment.header();
     header.seqno = wrap(_next_seqno, _isn);
     // Push it in _segments_out
+    // cerr<<wrap(_ackno, _isn).raw_value()<<endl;
     _segments_out.push(segment);
 }

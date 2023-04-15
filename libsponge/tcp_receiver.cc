@@ -18,7 +18,7 @@ void TCPReceiver::segment_received(const TCPSegment &seg) {
         _is_syn = true;
         _isn = head.seqno; 
     }
-    
+    // if(!head.syn && head.seqno != ackno()) return;
     string payload = seg.payload().copy();
     WrappingInt32 seqno = head.syn ? head.seqno + 1 : head.seqno; //第一个有效字符的序列号    
     uint64_t checkpoint = stream_out().bytes_written();
